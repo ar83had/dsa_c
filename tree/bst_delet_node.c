@@ -97,12 +97,22 @@ tree* delete(tree* root,int se)
             ptr = ptr->r_child;
     }
 
-    tree* succ;
+    tree* succ,*temp;
+    int data;
     if(ptr->l_child != NULL && ptr->r_child != NULL)
     {
         succ = succeor(ptr);
-        ptr->data = succ->data;
-        ptr = succ;
+        data = succ->data;
+        temp = ptr;
+        while(ptr->data != succ->data)
+        {
+            parent = ptr;
+            if(ptr->data > succ->data)
+                ptr = ptr->l_child;
+            else
+                ptr = ptr->r_child;
+        }
+        temp->data = data;
     }
     
     tree* child;
