@@ -1,3 +1,6 @@
+//taverse but not display vertex;
+//and find type of edge along traverser;
+
 #include"graph.h"
 
 int* state;
@@ -20,8 +23,8 @@ int main()
     return 0;
 }
 
-void ty_edge(int st)
-{
+void ty_edge(int st)   //st is predecusser & c1 is successor in graph
+{ 
     int static step=0;
     if(!state[st])
     {
@@ -34,11 +37,11 @@ void ty_edge(int st)
             {
                 if(!state[c1])
                 {
-                    printf("\nV(%d)------>V(%d)\t=>TREE EDGE",st,c1);
+                    printf("\nV(%d)------>V(%d)\t=>TREE EDGE",st,c1);  //if successor of visited;
                     ty_edge(c1);
                 }
                 else if(state[c1]==1)
-                    printf("\nV(%d)-------->V(%d)\tBACK EDGE",st,c1);
+                    printf("\nV(%d)-------->V(%d)\tBACK EDGE",st,c1);    // rest of not understand well;
                 else if(fin[st] < fin[c1])
                     printf("\nV(%d)-------->V(%d)\tFORWORD EDGE",st,c1);
                 else
