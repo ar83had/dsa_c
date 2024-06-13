@@ -2,6 +2,7 @@
 #include<stdlib.h>
 
 int v,e;
+int** adj;
 int** create();
 void display_e(int**);
 void display_adj(int**);
