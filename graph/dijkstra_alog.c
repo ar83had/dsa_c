@@ -1,4 +1,4 @@
-//find shortest path distance (dijkstra algourithm);
+//find shortest path distance (dijkstra algourithm) buy recursive and non recursive;
 //inistial requiment predecessor[]={nil},path_length[]={infinity},states[]={temperary},path_length[start]=0;
 //find current vartex (minimum temperary path_length vartex);
 //apply gredy aprroch on temperay adjuency vertex;
@@ -15,7 +15,7 @@ int* path_len;
 int** wei;
 int v;
 
-void diskstra(int);
+void dijkstra(int);
 void create_g();
 int min_temp();
 void min_path_length(int);
@@ -49,33 +49,48 @@ int main()
     scanf("%d",&s);
     path_len[s]=0;
     pre[s]=-1;
-    diskstra(s);
+    dijkstra(s);
     
     min_path_length(s);
 
     return 0;
 }
 
-void diskstra(int cur)
-{
-    if(cur==-1)
-        return;
+// void dijkstra(int cur)
+// {
+//     if(cur==-1)
+//         return;
     
-    for(int c1=0;c1<v;c1++)
+//     for(int c1=0;c1<v;c1++)
+//     {
+//         if(adj[cur][c1] && !states[c1] &&(path_len[cur]+wei[cur][c1]) < path_len[c1])  
+//         {
+//              path_len[c1]=path_len[cur]+wei[cur][c1];
+//              pre[c1]=cur;
+//         }
+//     }
+//     states[cur]=1;
+//     cur = min_temp();
+//     dijkstra(cur);
+//     return;
+// }
+
+void dijkstra(int cur)      //non-recursive way;
+{
+    while(cur != -1)
     {
-        if(adj[cur][c1] && !states[c1])
+        for(int c1=0;c1<v;c1++)
         {
-            if((path_len[cur]+wei[cur][c1]) < path_len[c1])
+            if(adj[cur][c1] && !states[c1] && (path_len[cur]+wei[cur][c1]) < path_len[c1])
             {
-                path_len[c1]=path_len[cur]+wei[cur][c1];
                 pre[c1]=cur;
+                path_len[c1]=path_len[cur]+wei[cur][c1];                
             }
         }
+        
+        states[cur]=1;
+        cur=min_temp();
     }
-
-    states[cur]=1;
-    cur = min_temp();
-    diskstra(cur);
     return;
 }
 
