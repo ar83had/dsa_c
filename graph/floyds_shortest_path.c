@@ -84,18 +84,18 @@ void create_g()
 
 int floyds()
 {
-    for(int c1=0;c1<v;c1++)
+    for(int c1=0;c1<v;c1++)//for intermidiate node;
     {
-        for(int c2=0;c2<v;c2++)
+        for(int c2=0;c2<v;c2++)//vertex i;
         {
-            for(int c3=0;c3<v;c3++)
+            for(int c3=0;c3<v;c3++)//vertex j
             {
-                if(short_len[c2][c3]<0)
+                if(short_len[c2][c3]<0)//for negative cycle
                 {
                     printf("\nnegative cycle !");
                     return 0;
                 }
-                else if((short_len[c2][c1]+short_len[c1][c3]) < short_len[c2][c3])
+                else if((short_len[c2][c1]+short_len[c1][c3]) < short_len[c2][c3]) 
                 {
                     short_len[c2][c3]=short_len[c2][c1]+short_len[c1][c3];
                     pre[c1]=c2;
