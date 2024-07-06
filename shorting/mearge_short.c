@@ -59,19 +59,34 @@ void copy(int des[],int source[],int lo,int up,int size)
     return;
 }
 
-void mearge_short(int arr[],int lo,int up)
+void copy_bt(int des[],int sou[],int l,int u)
 {
-    int mid;
-    if(lo<up)
-    {
-        mid=(lo+up)/2;
-        mearge_short(arr,lo,mid);
-        mearge_short(arr,mid+1,up);
-
-        int* temp = mearge(arr,lo,mid+1,mid,up,up+1);
-        copy(arr,temp,lo,up,up+1);
-    }
-
+    int index=0;
+    for(int c1=l;c1<=u;c1++)
+        des[c1]=sou[index++];
 
     return;
+}
+
+int* mearge_bt(int arr[],int l1,int u1,int l2,int u2)
+{    
+    int index=0;
+    int* temp = (int*)malloc(sizeof(int)*(u2-l1));
+
+    while(l1<=u1 && l2<=u2)
+    {
+        if(arr[l1]<=arr[l2])
+            temp[index++]=arr[l1++];
+        else
+            temp[index++]=arr[l2++];
+    }
+
+    if(l1>u1)
+        for(int c1=l2;c1<=u2;c1++)
+            temp[index++]=arr[c1];
+    else
+        for(int c1=l1;c1<=u1;c1++)
+            temp[index++]=arr[c1];
+    
+    return temp;
 }
