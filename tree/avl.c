@@ -19,6 +19,7 @@ tree* right_insertion(tree*);
 
 tree* delete(tree*,int);
 tree* check_avl(tree*,int);
+void pre(tree*);
 
 int flag=1;
 int main()
@@ -102,16 +103,33 @@ int main()
         else
             root=temp;
     }
-    printf("%d",root->data);
+    
+    printf("\n");
     inorder(root);
+    printf("\n");
+    pre(root);
+    // printf("%d",root->data);
+    // inorder(root);
 
-    int se;
-    printf("enter delete node data :");
-    scanf("%d",&se);
-    root=delete(root,se);
-    inorder(root);
+    // int se;
+    // printf("enter delete node data :");
+    // scanf("%d",&se);
+    // root=delete(root,se);
+    // inorder(root);
 
     return 0;
+}
+
+void pre(tree* root)
+{
+    if(root==NULL)
+        return;
+    
+    printf(" %d",root->data);
+    pre(root->lchild);
+    pre(root->rchild);
+
+    return;
 }
 
 void inorder(tree* root)
