@@ -1,7 +1,7 @@
 #include<stdio.h>
 
-int binary_search(int[],int);
-int binary_search_rec(int[],int,int,int);
+int binary_search(int[],int);   //non recursive function
+int binary_search_rec(int[],int,int,int); //recursive function 
 
 int main()
 {
