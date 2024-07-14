@@ -3,8 +3,8 @@
 
 int* hashing(int[],int);
 int up_prime(int);
-int division(int);
 int search(int[],int);
+int division(int[],int);
 int m;
 
 int main()
@@ -35,11 +35,11 @@ int main()
 int* hashing(int arr[],int n)
 {
     m = up_prime(n);
-    int* hash_table = (int*)malloc(sizeof(int)*m);
+    int* hash_table = (int*)calloc(m,sizeof(int));
 
     for(int c1=0;c1<n;c1++)
     {
-        int add = division(arr[c1]);
+        int add = division(hash_table,arr[c1]);
         hash_table[add]=arr[c1];
     }
 
@@ -65,16 +65,37 @@ int up_prime(int n)
     return n;
 }
 
-int division(int key)
-{
-    return key%m;
-}
-
 int search(int arr[],int key)
 {
-    int add = division(key);
-    if(arr[add]==key)
-        return 1;
-    else
-        return 0;
+    int add = key%m;
+    int temp=add;
+    int c1=0;
+    while(arr[add+c1]!=0)
+    {
+        if(arr[add+c1]==key)
+            return 1;
+
+        if(add==m-1)
+            add-=m-c1;
+        c1++;
+        if(add+c1==temp)
+            return 0;
+    }
+
+    return 0;
+}
+
+int  division(int arr[],int key)
+{
+    int add = key%m;
+    int c1=0;
+    while(arr[add+c1]!=0)
+    {
+        if(c1==m-1)
+            add=add-m-c1;
+        c1++;
+    }
+    
+
+    return add+c1;
 }
