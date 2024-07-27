@@ -4,6 +4,7 @@ int partition(int[],int,int);
 void quick_short(int[],int,int);
 //void partition_pre(int[],int,int);        //avoid it !!!!
 void swap(int[],int,int);
+void meadean(int[],int,int);
 
 int main()
 {
@@ -20,6 +21,7 @@ int main()
 
 int partition(int arr[],int lo,int up)
 {
+    meadean(arr,lo,up);
     int key=arr[lo];
     int c1=lo+1;
     int c2=up;
@@ -63,7 +65,6 @@ void quick_short(int arr[],int lo,int up)
     quick_short(arr,lo,povitloc-1);
     quick_short(arr,povitloc+1,up);
 
-    printf("\n# %d #",count);
 
     return;
 }
@@ -95,6 +96,22 @@ void swap(int arr[],int lo,int up)
     int temp=arr[lo];
     arr[lo]=arr[up];
     arr[up]=temp;
+
+    return;
+}
+
+void meadean(int arr[],int lo,int up)
+{
+    int mid = (lo+up)/2;
+
+    if(arr[lo]>arr[mid])
+        swap(arr,lo,mid);
+    if(arr[lo]>arr[up])
+        swap(arr,lo,up);
+    if(arr[mid]>arr[up])
+        swap(arr,mid,up);
+    
+    swap(arr,lo,mid);
 
     return;
 }
