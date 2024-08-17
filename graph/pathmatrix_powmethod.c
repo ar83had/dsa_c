@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-//hi
+//b2
 
 int v;
 int** adj_matrix(int**,int);
